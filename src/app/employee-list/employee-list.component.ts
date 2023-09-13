@@ -14,6 +14,7 @@ export class EmployeeListComponent implements OnInit {
   searchFilter = '';
   newEmployee: any = {}; // For storing the data of a new employee
   showAddForm = false; // To toggle the display of the add employee form
+  sortDirection: 'asc' | 'desc' = 'asc'; // Initialize sorting direction
 
   constructor(private employeeService: EmployeeService) {}
 
@@ -33,42 +34,52 @@ export class EmployeeListComponent implements OnInit {
   }
 
   sortBy(key: string): void {
+
+    if (key === this.sortKey) {
+      // If the same column header is clicked, toggle the sorting direction
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      // If a different column header is clicked, reset the sorting direction to 'asc'
+      this.sortDirection = 'asc';
+    }
+
     this.sortKey = key;
 
-        if (key === 'firstName') {
-          this.employees.sort((a, b) => a.firstName.localeCompare(b.firstName));
-        } else if (key === 'lastName') {
-          this.employees.sort((a, b) => a.lastName.localeCompare(b.lastName));
-        } else if (key === 'email') {
-          this.employees.sort((a, b) => a.email.localeCompare(b.email));
-        } else if (key === 'address') {
-          this.employees.sort((a, b) => a.address.localeCompare(b.address));
-        } else if (key === 'address') {
-          this.employees.sort((a, b) => a.address.localeCompare(b.address));
-        }else if (key === 'contactNumber') {
-          this.employees.sort((a, b) => a.contactNumber.localeCompare(b.contactNumber));
-        } 
-          else if (key === 'age') {
-          this.employees.sort((a, b) => a[key] - b[key]);
-        } else if (key === 'salary') {
-          this.employees.sort((a, b) => a[key] - b[key]);
-        }
-        else if (key === 'dob') {
-          this.employees.sort((a, b) => {
-            const dateA = this.parseDateFromString(a[key]);
-            const dateB = this.parseDateFromString(b[key]);
-    
-            if (!dateA || !dateB) {
-              return 0; // Return 0 if the dates are not valid
-            }
-    
-            return dateA.getTime() - dateB.getTime();
-                  
-              });   
-            }      
+    switch (key) {
+      case 'firstName':
+      case 'lastName':
+      case 'email':
+      case 'address':
+      case 'contactNumber':
+        // For string fields, use localeCompare for case-insensitive sorting
+        this.employees.sort((a, b) => {
+          const result = a[key].localeCompare(b[key]);
+          return this.sortDirection === 'asc' ? result : -result;
+        });
+        break;
+      case 'age':
+      case 'salary':
+        // For numeric fields, use numeric comparison
+        this.employees.sort((a, b) => {
+          const result = a[key] - b[key];
+          return this.sortDirection === 'asc' ? result : -result;
+        });
+        break;
+      case 'dob':
+        // For date fields in "MM/DD/YYYY" string format, parse the dates and compare
+        this.employees.sort((a, b) => {
+          const dateA = this.parseDateFromString(a[key]);
+          const dateB = this.parseDateFromString(b[key]);
 
+          if (!dateA || !dateB) {
+            return 0; // Return 0 if the dates are not valid
+          }
 
-            
+          const result = dateA.getTime() - dateB.getTime();
+          return this.sortDirection === 'asc' ? result : -result;
+        });
+        break;
+    }
   }
 
 
