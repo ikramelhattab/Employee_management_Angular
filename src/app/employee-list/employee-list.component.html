@@ -1,0 +1,71 @@
+<!-- employee-list.component.html -->
+
+<div class="container">
+  <h1>Liste des Employés</h1>
+
+  <!-- Bouton d'ajout -->
+  <div class="add-button">
+    <button class="add-button" (click)="showAddForm = true">Ajouter un employé</button>
+  </div>
+
+  <br>
+
+   <!-- Formulaire d'ajout d'employé -->
+   <div class="add-form" *ngIf="showAddForm">
+    <h2>Ajouter un employé</h2>
+    <form (submit)="addEmployee(newEmployee)">
+      <!-- Ajoutez des champs pour les informations de l'employé -->
+      <input type="text" [(ngModel)]="newEmployee.firstName" name="firstName" placeholder="Nom">
+      <input type="text" [(ngModel)]="newEmployee.email" name="email" placeholder="Email">
+      <!-- Ajoutez d'autres champs ici -->
+      <button type="submit">Ajouter</button>
+    </form>
+  </div>
+  
+  <!-- Champs de filtrage -->
+  <input type="text" [(ngModel)]="searchFilter" (keyup)="filterData()" placeholder="Filtrer par nom, email, téléphone...">
+
+  <!-- Boutons de pagination -->
+  <!-- <div class="pagination">
+    <pagination-controls (pageChange)="onPageChange($event)" [itemsPerPage]="itemsPerPage" [totalItems]="filteredEmployees.length"></pagination-controls>
+  </div> -->
+
+<!-- Tableau des employés -->
+<table>
+    <!-- En-tête du tableau avec des boutons de tri -->
+    <thead>
+      <tr>
+        <th (click)="sortBy('imageUrl')">Image</th>
+        <th (click)="sortBy('firstName')">Nom</th>
+        <th (click)="sortBy('lastName')">Prénom</th>
+        <th (click)="sortBy('email')">Email</th>
+        <th (click)="sortBy('contactNumber')">Téléphone</th>
+        <th (click)="sortBy('age')">Age</th>
+        <th (click)="sortBy('dob')">Date de naissance </th>
+        <th (click)="sortBy('salary')">Salaire</th>
+        <th (click)="sortBy('address')">Addresse</th>
+        <th>Action</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Utilisez *ngFor pour afficher les employés  -->
+      <tr *ngFor="let employee of employees  | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } ">
+        <td> <img src="{{ employee.imageUrl }}" width="50" height="50"> </td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.contactNumber }}</td>
+        <td>{{ employee.age }}</td>
+        <td>{{ employee.dob }}</td>
+        <td>{{ employee.salary }}</td>
+        <td>{{ employee.address }}</td>
+        <td>
+          <button class="delete-button " (click)="deleteEmployee(employee)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+</div>
