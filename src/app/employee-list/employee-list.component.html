@@ -5,30 +5,25 @@
 
   <!-- Bouton d'ajout -->
   <div class="add-button">
-    <button class="add-button" (click)="showAddForm = true">Ajouter un employé</button>
+    <button (click)="deleteEmployee(employee)">Ajouter un employé</button>
   </div>
+
+  <!-- Boutons de pagination -->
+  <label for="itemsPerPage">Éléments par page :</label>
+  <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+    <option value="10">10</option>
+    <option value="20">20</option>
+    <option value="30">30</option>
+  </select>
 
   <br>
 
-   <!-- Formulaire d'ajout d'employé -->
-   <div class="add-form" *ngIf="showAddForm">
-    <h2>Ajouter un employé</h2>
-    <form (submit)="addEmployee(newEmployee)">
-      <!-- Ajoutez des champs pour les informations de l'employé -->
-      <input type="text" [(ngModel)]="newEmployee.firstName" name="firstName" placeholder="Nom">
-      <input type="text" [(ngModel)]="newEmployee.email" name="email" placeholder="Email">
-      <!-- Ajoutez d'autres champs ici -->
-      <button type="submit">Ajouter</button>
-    </form>
-  </div>
   
+
   <!-- Champs de filtrage -->
   <input type="text" [(ngModel)]="searchFilter" (keyup)="filterData()" placeholder="Filtrer par nom, email, téléphone...">
 
-  <!-- Boutons de pagination -->
-  <!-- <div class="pagination">
-    <pagination-controls (pageChange)="onPageChange($event)" [itemsPerPage]="itemsPerPage" [totalItems]="filteredEmployees.length"></pagination-controls>
-  </div> -->
+
 
 <!-- Tableau des employés -->
 <table>
@@ -68,4 +63,18 @@
   </table>
   
   
+</div>
+
+
+
+
+<div class="add-form">
+  <h2>Ajouter un employé</h2>
+  <form (submit)="addEmployee()" *ngIf="showAddForm">
+    <input type="text" [(ngModel)]="newEmployee.firstName" name="firstName" placeholder="Nom">
+    <input type="text" [(ngModel)]="newEmployee.lastName" name="lastName" placeholder="Prénom">
+    <input type="text" [(ngModel)]="newEmployee.email" name="email" placeholder="Email">
+    <!-- Ajoutez d'autres champs ici -->
+    <button type="submit">Ajouter</button>
+  </form>
 </div>

@@ -12,15 +12,25 @@ export class EmployeeListComponent implements OnInit {
   itemsPerPage = 10;
   sortKey = '';
   searchFilter = '';
-  newEmployee: any = {}; // For storing the data of a new employee
   showAddForm = false; // To toggle the display of the add employee form
   sortDirection: 'asc' | 'desc' = 'asc'; // Initialize sorting direction
 
-  constructor(private employeeService: EmployeeService) {}
+// For storing the data of a new employee
+  newEmployee: any = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    // Initialisez d'autres propriétés ici
+  };
+  
+
+  constructor(private employeeService: EmployeeService) { }
 
   ngOnInit(): void {
     this.loadEmployees();
     this.filterData();
+    this.showAddForm = false; 
+
   }
 
   loadEmployees(): void {
@@ -66,7 +76,7 @@ export class EmployeeListComponent implements OnInit {
         });
         break;
       case 'dob':
-        // For date fields in "MM/DD/YYYY" string format, parse the dates and compare
+        // For date fields in "DD/MM/YYYY" string format, parse the dates and compare
         this.employees.sort((a, b) => {
           const dateA = this.parseDateFromString(a[key]);
           const dateB = this.parseDateFromString(b[key]);
@@ -82,22 +92,31 @@ export class EmployeeListComponent implements OnInit {
     }
   }
 
-
-// Custom function to parse date from "MM/DD/YYYY" string format
-private parseDateFromString(dateString: string): Date | null {
-  const dateParts = dateString.split('/');
-  if (dateParts.length === 3) {
-    const day = parseInt(dateParts[0]);
-    const month = parseInt(dateParts[1]);
-    const year = parseInt(dateParts[2]);
-
-    // Check if the parsed values are valid
-    if (!isNaN(month) && !isNaN(day) && !isNaN(year)) {
-      return new Date(year, month - 1, day); // Month is zero-based
-    }
+  onItemsPerPageChange(): void {
+    // Mettez à jour la pagination lorsque l'utilisateur change le nombre d'éléments par page
+    // Par exemple, revenez à la première page lorsque le nombre d'éléments par page est modifié
+    this.currentPage = 1;
+  
+    // Appelez la méthode filterData (ou toute autre méthode que vous utilisez pour le filtrage) pour mettre à jour l'affichage
+    this.filterData();
   }
-  return null; // Return null for invalid date strings
-}
+  
+  // Custom function to parse date from "MM/DD/YYYY" string format
+  private parseDateFromString(dateString: string): Date | null {
+    const dateParts = dateString.split('/');
+    if (dateParts.length === 3) {
+      const day = parseInt(dateParts[0]);
+      const month = parseInt(dateParts[1]);
+      const year = parseInt(dateParts[2]);
+      // Check if the parsed values are valid
+      if (!isNaN(month) && !isNaN(day) && !isNaN(year)) {
+        return new Date(year, month - 1, day); // Month is zero-based
+      }
+    }
+    return null; // Return null for invalid date strings
+  }
+
+
 
   filterData(): void {
     // Assuming you want to filter by any field containing the searchFilter value
@@ -112,9 +131,9 @@ private parseDateFromString(dateString: string): Date | null {
         employee.email.toLowerCase().includes(searchString) ||
         employee.address.toLowerCase().includes(searchString) ||
         employee.contactNumber.toLowerCase().includes(searchString) ||
-        employee.dob.toLowerCase().includes(searchString)||
-        (employee.age === searchNumber)||
-        (employee.salary === searchFloat) 
+        employee.dob.toLowerCase().includes(searchString) ||
+        (employee.age === searchNumber) ||
+        (employee.salary === searchFloat)
       );
     });
   }
@@ -124,19 +143,33 @@ private parseDateFromString(dateString: string): Date | null {
 
   deleteEmployee(employee: any): void {
 
-  const index = this.employees.indexOf(employee);
-  if (index !== -1) {
-   this.employees.splice(index, 1);
-  }
+    const index = this.employees.indexOf(employee);
+    if (index !== -1) {
+      this.employees.splice(index, 1);
+    }
 
   }
+  addEmployee(): void {
 
-  addEmployee(newEmployee: any): void {
-    
-    this.employees.push(newEmployee);
-    this.newEmployee = {}; // Clear the form fields
-    this.showAddForm = false; // Hide the add employee form  }
+    console.log('Adding employee...');
+    console.log('showAddForm before:', this.showAddForm);
+    // Ajoutez le nouvel employé à la liste
+    this.employees.push(this.newEmployee);
+  
+    // Réinitialisez les champs du formulaire après l'ajout
+    this.newEmployee = {
+      firstName: '',
+      lastName: '',
+      email: ''
+      // Réinitialisez d'autres propriétés ici
+    };
 
-}
+    this.showAddForm = false; // Hide the add employee form
+    console.log('showAddForm after:', this.showAddForm); // Add this line
+
+
+  }
+  
+
 
 }
