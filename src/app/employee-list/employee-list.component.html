@@ -5,7 +5,7 @@
 
   <!-- Bouton d'ajout -->
   <div class="add-button">
-    <button (click)="deleteEmployee(employee)">Ajouter un employé</button>
+    <button (click)="showAddForm = true;">Ajouter un employé</button>
   </div>
 
   <!-- Boutons de pagination -->
@@ -74,7 +74,6 @@
     <input type="text" [(ngModel)]="newEmployee.firstName" name="firstName" placeholder="Nom">
     <input type="text" [(ngModel)]="newEmployee.lastName" name="lastName" placeholder="Prénom">
     <input type="text" [(ngModel)]="newEmployee.email" name="email" placeholder="Email">
-    <!-- Ajoutez d'autres champs ici -->
     <button type="submit">Ajouter</button>
   </form>
 </div>
