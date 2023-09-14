@@ -1,15 +1,15 @@
 # GestionEmployes
 
-## Etape 1: Créer un nouveau projet Angular
+## Créer un nouveau projet Angular
 ng new gestion-employes
 
-## Etape 2: Créer un composant pour la liste d'employés 
+## Créer un composant pour la liste d'employés 
 ng generate component employee-list
 
-## Etape 3: Installer Angular HttpClient 
+## Installer Angular HttpClient 
 npm install @angular/common/http
 
-## Etape 4: Créez un service pour gérer les requêtes HTTP vers l'API 
+## Créez un service pour gérer les requêtes HTTP vers l'API 
 ng generate service employee
 
 ## Etape 5: Exécutez l'application Angular :
