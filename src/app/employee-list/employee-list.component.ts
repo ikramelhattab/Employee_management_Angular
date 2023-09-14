@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../service/employee.service';
-import { MatDialog } from '@angular/material/dialog'; 
-import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component'; 
+import { MatDialog } from '@angular/material/dialog';
+import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component';
 
 @Component({
   selector: 'app-employee-list',
@@ -18,26 +18,24 @@ export class EmployeeListComponent implements OnInit {
   searchFilter = '';
   sortDirection: 'asc' | 'desc' = 'asc'; // Initialize sorting direction
 
-// For storing the data of a new employee
-  newEmployee: any =  {
+  // For storing the data of a new employee
+  newEmployee: any = {
     firstName: '',
     lastName: '',
     email: '',
-    address:'',
+    address: '',
     contactNumber: '',
     dob: '',
     age: '',
     salary: '',
   };
-  
 
-  constructor(private employeeService: EmployeeService,private dialog: MatDialog) { }
+
+  constructor(private employeeService: EmployeeService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadEmployees();
     this.filterData();
-
-    
   }
 
   loadEmployees(): void {
@@ -102,9 +100,9 @@ export class EmployeeListComponent implements OnInit {
   onItemsPerPageChange(): void {
     // Mettez à jour la pagination lorsque l'utilisateur change le nombre d'éléments par page
     this.currentPage = 1;
-      this.filterData();
+    this.filterData();
   }
-  
+
   // Custom function to parse date from "MM/DD/YYYY" string format
   private parseDateFromString(dateString: string): Date | null {
     const dateParts = dateString.split('/');
@@ -156,71 +154,71 @@ export class EmployeeListComponent implements OnInit {
   addEmployee(): void {
     // Ajoutez le nouvel employé à la liste
     this.employees.push(this.newEmployee);
-  
+
     // Réinitialisez les champs du formulaire après l'ajout
     this.newEmployee = {
       firstName: '',
       lastName: '',
       email: '',
-      address:'',
+      address: '',
       contactNumber: '',
       dob: '',
       age: '',
       salary: '',
     };
 
-7
+    
 
   }
-  
 
 
 
- // Open the add form as a dialog
- openAddForm(): void {
-  const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-    panelClass: 'center-dialog', 
-    width: '500px',
-    height: '500px',
-    autoFocus: false,
-    disableClose: true,
 
-  });
+  // Open the add form as a dialog
+  openAddForm(): void {
+    const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+      panelClass: 'center-dialog',
+      width: '500px',
+      height: '500px',
+      autoFocus: false,
+      disableClose: true,
 
-  dialogRef.afterClosed().subscribe((result: any) => {
-    // Traitez les données retournées par la popup ici si nécessaire
-    if (result) {
-      // Ajoutez le nouvel employé à la liste
-      this.employees.push(result);
-    }
-  });
+    });
 
-}
+    dialogRef.afterClosed().subscribe((result: any) => {
+      // Traitez les données retournées par la popup ici si nécessaire
+      if (result) {
+        // Ajoutez le nouvel employé à la liste
+        this.employees.push(result);
+      }
+    });
+
+  }
 
 
-get filteredEmployees(): any[] {
-  // Calculate the starting index of the current page
-  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  get filteredEmployees(): any[] {
+    // Calculate the starting index of the current page
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
 
-  // Slice the employees array to get the employees for the current page
-  const pagedEmployees = this.employees.slice(startIndex, startIndex + this.itemsPerPage);
+    // Slice the employees array to get the employees for the current page
+    const pagedEmployees = this.employees.slice(startIndex, startIndex + this.itemsPerPage);
 
-  // Filter the paged employees based on the search filter
-  return pagedEmployees.filter((employee) => {
-    const searchString = this.searchFilter.toLowerCase();
-    // Add your filtering logic here, similar to what you did in the filterData method
-    return (
-      employee.firstName.toLowerCase().includes(searchString) ||
-      employee.lastName.toLowerCase().includes(searchString) ||
-      employee.email.toLowerCase().includes(searchString) ||
-      employee.address.toLowerCase().includes(searchString) ||
-      employee.contactNumber.toLowerCase().includes(searchString) ||
-      employee.dob.toLowerCase().includes(searchString) ||
-      (employee.age === parseInt(searchString)) ||
-      (employee.salary === parseFloat(searchString))
-    );
-  });
-}
+    // Filter the paged employees based on the search filter
+    return pagedEmployees.filter((employee) => {
+      const searchString = this.searchFilter.toLowerCase();
+      // Add your filtering logic here, similar to what you did in the filterData method
+      return (
+        employee.firstName.toLowerCase().includes(searchString) ||
+        employee.lastName.toLowerCase().includes(searchString) ||
+        employee.email.toLowerCase().includes(searchString) ||
+        employee.address.toLowerCase().includes(searchString) ||
+        employee.contactNumber.toLowerCase().includes(searchString) ||
+        employee.dob.toLowerCase().includes(searchString) ||
+        (employee.age === parseInt(searchString)) ||
+        (employee.salary === parseFloat(searchString))
+      );
+    });
+  }
 
 
 
