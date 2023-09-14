@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../service/employee.service';
-
+// import { MatDialog } from '@angular/material/dialog'; 
+// import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component'; 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -16,11 +17,15 @@ export class EmployeeListComponent implements OnInit {
   sortDirection: 'asc' | 'desc' = 'asc'; // Initialize sorting direction
 
 // For storing the data of a new employee
-  newEmployee: any = {
+  newEmployee: any =  {
     firstName: '',
     lastName: '',
     email: '',
-    // Initialisez d'autres propriétés ici
+    address:'',
+    contactNumber: '',
+    dob: '',
+    age: '',
+    salary: '',
   };
   
 
@@ -150,9 +155,6 @@ export class EmployeeListComponent implements OnInit {
 
   }
   addEmployee(): void {
-
-    console.log('Adding employee...');
-    console.log('showAddForm before:', this.showAddForm);
     // Ajoutez le nouvel employé à la liste
     this.employees.push(this.newEmployee);
   
@@ -160,16 +162,34 @@ export class EmployeeListComponent implements OnInit {
     this.newEmployee = {
       firstName: '',
       lastName: '',
-      email: ''
-      // Réinitialisez d'autres propriétés ici
+      email: '',
+      address:'',
+      contactNumber: '',
+      dob: '',
+      age: '',
+      salary: '',
     };
 
     this.showAddForm = false; // Hide the add employee form
-    console.log('showAddForm after:', this.showAddForm); // Add this line
 
 
   }
   
+
+
+
+ // Open the add form as a dialog
+ openAddForm(): void {
+  // const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+  //   width: '400px', // Adjust the width as needed
+  // });
+
+  // dialogRef.afterClosed().subscribe((result:any) => {
+  //   console.log('The dialog was closed');
+  //   // Handle any data returned from the dialog if needed
+  // });
+}
+
 
 
 }
