@@ -7,7 +7,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 // import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'; 
 
@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    MatDialogModule, 
+    MatDialogModule,
     MatButtonModule
   ],
   providers: [],
