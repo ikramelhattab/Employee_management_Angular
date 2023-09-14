@@ -48,6 +48,7 @@ input {
   th {
     background-color: #f0f0f0;
     cursor: pointer;
+    font-weight: bold;
   }
   
   tr:nth-child(even) {
@@ -66,14 +67,17 @@ input {
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #0056b3;
+  
+  .add-button:hover {
+    background-color: #0662c4;
   }
   
   .add-button {
-  
     text-align: right;
     margin-top: 20px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
   }
   
   .add-form {
@@ -107,5 +111,26 @@ input {
     .card {
       margin-bottom: 10px;
     }
+    .h1{
+      margin-bottom: 10px;
+
+    }
   }
   
+  .parent {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flex-item{
+  
+     flex: 0 0 198px; 
+     margin: 10px;
+  }
+
+  .box {
+    display: flex;
+  }
+  .push {
+      margin-left: auto;
+  }

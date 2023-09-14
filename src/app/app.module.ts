@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    // MatDialogModule,
+    MatDialogModule,
     MatButtonModule
   ],
   providers: [],

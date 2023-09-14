@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../service/employee.service';
-// import { MatDialog } from '@angular/material/dialog'; 
+import { MatDialog } from '@angular/material/dialog'; 
 import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component'; 
+
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.css'],
 })
+
 export class EmployeeListComponent implements OnInit {
+
   employees: any[] = [];
   currentPage = 1;
   itemsPerPage = 10;
@@ -29,7 +32,7 @@ export class EmployeeListComponent implements OnInit {
   };
   
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService,private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.loadEmployees();
@@ -177,15 +180,15 @@ export class EmployeeListComponent implements OnInit {
 
  // Open the add form as a dialog
  openAddForm(): void {
-  console.log("okaaaay")
-  // const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-  //   width: '400px', // Adjust the width as needed
-  // });
+  const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
+    width: '400px', // Adjust the width as needed
+  });
 
-  // dialogRef.afterClosed().subscribe((result:any) => {
-  //   console.log('The dialog was closed');
-  //   // Handle any data returned from the dialog if needed
-  // });
+  dialogRef.afterClosed().subscribe((result) => {
+    console.log('The dialog was closed');
+    // Handle any data returned from the dialog if needed
+  });
+
 }
 
 

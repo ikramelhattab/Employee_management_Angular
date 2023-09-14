@@ -1,1 +1,6 @@
-<p>add-employee-dialog works!</p>
+<h2>Ajouter un employé</h2>
+<form (ngSubmit)="onSubmit()">
+  <!-- Form fields here -->
+  <button type="submit">Ajouter</button>
+  <button type="button" (click)="onCancel()">Annuler</button>
+</form>
