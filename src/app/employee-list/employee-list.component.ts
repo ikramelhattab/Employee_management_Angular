@@ -16,7 +16,6 @@ export class EmployeeListComponent implements OnInit {
   itemsPerPage = 10;
   sortKey = '';
   searchFilter = '';
-  showAddForm = false; // To toggle the display of the add employee form
   sortDirection: 'asc' | 'desc' = 'asc'; // Initialize sorting direction
 
 // For storing the data of a new employee
@@ -37,8 +36,8 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.loadEmployees();
     this.filterData();
-    this.showAddForm = false; 
 
+    
   }
 
   loadEmployees(): void {
@@ -170,8 +169,7 @@ export class EmployeeListComponent implements OnInit {
       salary: '',
     };
 
-    this.showAddForm = false; // Hide the add employee form
-
+7
 
   }
   
@@ -181,12 +179,20 @@ export class EmployeeListComponent implements OnInit {
  // Open the add form as a dialog
  openAddForm(): void {
   const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-    width: '400px', // Adjust the width as needed
+    panelClass: 'center-dialog', 
+    width: '500px',
+    height: '500px',
+    autoFocus: false,
+    disableClose: true,
+
   });
 
-  dialogRef.afterClosed().subscribe((result) => {
-    console.log('The dialog was closed');
-    // Handle any data returned from the dialog if needed
+  dialogRef.afterClosed().subscribe((result: any) => {
+    // Traitez les données retournées par la popup ici si nécessaire
+    if (result) {
+      // Ajoutez le nouvel employé à la liste
+      this.employees.push(result);
+    }
   });
 
 }
@@ -216,19 +222,6 @@ get filteredEmployees(): any[] {
   });
 }
 
-
-onPreviousPage(): void {
-  if (this.currentPage > 1) {
-    this.currentPage--;
-  }
-}
-
-onNextPage(): void {
-  const totalPages = Math.ceil(this.filteredEmployees.length / this.itemsPerPage);
-  if (this.currentPage < totalPages) {
-    this.currentPage++;
-  }
-}
 
 
 }

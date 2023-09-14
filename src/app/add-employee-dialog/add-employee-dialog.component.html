@@ -1,6 +1,20 @@
-<h2>Ajouter un employé</h2>
-<form (ngSubmit)="onSubmit()">
-  <!-- Form fields here -->
-  <button type="submit">Ajouter</button>
-  <button type="button" (click)="onCancel()">Annuler</button>
-</form>
+  <div mat-dialog-title class="d-flex justify-content-center">
+    <h2>Ajouter un employé</h2>
+    <span class="times" (click)="onCancelClick($event)">&times;</span>
+</div>
+<div class="add-form">
+  <form (ngSubmit)="onSubmit()">
+    <input type="text" [(ngModel)]="imageUrl" name="imageUrl" placeholder="image">
+    <input type="text" [(ngModel)]="firstName" name="firstName" placeholder="Nom">
+    <input type="text" [(ngModel)]="lastName" name="lastName" placeholder="Prénom">
+    <input type="text" [(ngModel)]="email" name="email" placeholder="Email">
+    <input type="text" [(ngModel)]="contactNumber" name="contactNumber" placeholder="Téléphone">
+    <input type="number" [(ngModel)]="age" name="age" placeholder="Age">
+    <input type="date" [(ngModel)]="dob" name="dob" placeholder="Date de naissance">
+    <input type="number" [(ngModel)]="salary" name="salary" placeholder="Salaire">
+    <input type="text" [(ngModel)]="address" name="address" placeholder="Address">
+
+    <button class="add-btn" type="submit">Ajouter</button>
+    <button class="cancel-btn " type="button" (click)="onCancel()">Annuler</button>
+  </form>
+</div>
