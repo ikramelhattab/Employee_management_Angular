@@ -6,17 +6,17 @@ import { EmployeeListComponent } from './employee-list/employee-list.component';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
-// import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'; 
 
 @NgModule({
   
   declarations: [
     AppComponent,
     EmployeeListComponent,
-    // AddEmployeeDialogComponent,
+    AddEmployeeDialogComponent,
     
   ],
   imports: [
@@ -26,7 +26,7 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule, 
-    MatDialogModule,
+    // MatDialogModule,
     MatButtonModule
   ],
   providers: [],

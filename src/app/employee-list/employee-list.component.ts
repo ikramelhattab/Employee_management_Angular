@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from '../service/employee.service';
 // import { MatDialog } from '@angular/material/dialog'; 
-// import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component'; 
+import { AddEmployeeDialogComponent } from '../add-employee-dialog/add-employee-dialog.component'; 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
@@ -81,7 +81,7 @@ export class EmployeeListComponent implements OnInit {
         });
         break;
       case 'dob':
-        // For date fields in "DD/MM/YYYY" string format, parse the dates and compare
+        // For date field in "DD/MM/YYYY" string format, parse the dates and compare
         this.employees.sort((a, b) => {
           const dateA = this.parseDateFromString(a[key]);
           const dateB = this.parseDateFromString(b[key]);
@@ -99,11 +99,8 @@ export class EmployeeListComponent implements OnInit {
 
   onItemsPerPageChange(): void {
     // Mettez à jour la pagination lorsque l'utilisateur change le nombre d'éléments par page
-    // Par exemple, revenez à la première page lorsque le nombre d'éléments par page est modifié
     this.currentPage = 1;
-  
-    // Appelez la méthode filterData (ou toute autre méthode que vous utilisez pour le filtrage) pour mettre à jour l'affichage
-    this.filterData();
+      this.filterData();
   }
   
   // Custom function to parse date from "MM/DD/YYYY" string format
@@ -180,6 +177,7 @@ export class EmployeeListComponent implements OnInit {
 
  // Open the add form as a dialog
  openAddForm(): void {
+  console.log("okaaaay")
   // const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
   //   width: '400px', // Adjust the width as needed
   // });
@@ -190,6 +188,44 @@ export class EmployeeListComponent implements OnInit {
   // });
 }
 
+
+get filteredEmployees(): any[] {
+  // Calculate the starting index of the current page
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+
+  // Slice the employees array to get the employees for the current page
+  const pagedEmployees = this.employees.slice(startIndex, startIndex + this.itemsPerPage);
+
+  // Filter the paged employees based on the search filter
+  return pagedEmployees.filter((employee) => {
+    const searchString = this.searchFilter.toLowerCase();
+    // Add your filtering logic here, similar to what you did in the filterData method
+    return (
+      employee.firstName.toLowerCase().includes(searchString) ||
+      employee.lastName.toLowerCase().includes(searchString) ||
+      employee.email.toLowerCase().includes(searchString) ||
+      employee.address.toLowerCase().includes(searchString) ||
+      employee.contactNumber.toLowerCase().includes(searchString) ||
+      employee.dob.toLowerCase().includes(searchString) ||
+      (employee.age === parseInt(searchString)) ||
+      (employee.salary === parseFloat(searchString))
+    );
+  });
+}
+
+
+onPreviousPage(): void {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+  }
+}
+
+onNextPage(): void {
+  const totalPages = Math.ceil(this.filteredEmployees.length / this.itemsPerPage);
+  if (this.currentPage < totalPages) {
+    this.currentPage++;
+  }
+}
 
 
 }
