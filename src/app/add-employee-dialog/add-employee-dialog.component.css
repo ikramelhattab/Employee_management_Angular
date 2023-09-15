@@ -1,19 +1,30 @@
-.center-dialog {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-y: auto;
+/* Add this to your CSS file */
+.popup-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* Adjust z-index as needed */
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Optional shadow effect */
+  max-width: 80%; /* Optional maximum width */
+
 }
 
+
+
 .cancel-btn {
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
   padding: 10px;
   border: 1px solid;
   border-radius: 14px;
   margin-right: 10px;
+  background: linear-gradient(270deg, #e0e408 27.81%, #e0e408 43.71%, #e9c41d 95.63%);
+  color: white;
+  border: none;
 
   &:hover {
     background-color: rgb(234, 241, 253);
@@ -22,19 +33,26 @@
 
 
 .add-btn {
-  font-weight: 700;
-  padding: 10px;
   border: 1px solid;
-  border-radius: 14px;
+  padding: 10px 20px;
+  background: linear-gradient(270deg, #2a6dbe 27.81%, #217ff3 43.71%, #3582ee 95.63%);
+  text-transform: capitalize;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
 
   &:hover {
-    opacity: 0.9;
+    cursor: pointer;
+    opacity: 0.95;
   }
 
   &:disabled {
     cursor: not-allowed;
   }
 }
+
+
 
 
 form {
@@ -46,34 +64,38 @@ form {
         position: relative;
     }
  
-
-  input {
-    padding: 12px 18px;
-    border-color: rgba(23, 38, 79, 1);
-    border-radius: 10px;
-    font-size: 18px;
+    input {
+      padding: 12px 18px;
+      border-color: rgba(23, 38, 79, 1);
+      border-radius: 10px;
+      font-size: 18px;
   }
+
+  select {
+      padding: 12px 18px;
+      border-color: rgba(23, 38, 79, 1);
+      border-radius: 10px;
+      font-size: 18px;
+      width: 100%;
+      &:focus {
+          outline: 0;
+          box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+      }
+  }
+
+
+  
 
   /* Supress the background color of the input */
   input:-webkit-autofill,
   input:-webkit-autofill:focus {
-    transition: background-color 600000s 0s, color 600000s 0s;
+      transition: background-color 600000s 0s, color 600000s 0s;
   }
 
-  .input-label {
-    position: absolute;
-    top: -10px;
-    left: 20px;
-    background-color: white;
-    padding: 0px 20px 0px 10px;
-    text-transform: uppercase;
-    font-weight: 700;
-    font-size: 18;
-  }
+
+
 
 }
-
-
 
 
 

@@ -1,0 +1,47 @@
+<mat-sidenav-container autosize>
+
+    <mat-sidenav #sideNav [mode]="modeMenu" [fixedInViewport]="true" [opened]="showMenu">
+
+        <div class="sidenav-content">
+            <div class="user-info text-center">
+                <img class="avatar" src="assets/profile.png" width="80px" height="80px">
+                <div class="name">Ikram Hattab</div>
+            </div>
+
+            <hr class="seperator" style="margin-bottom: 30px;">
+
+            <mat-nav-list>
+            
+                <!-- employee List -->
+                <a mat-list-item class="mat-list-item" [routerLink]="'/employee-list'" routerLinkActive="link-active">
+                    Liste des Employés
+                </a>
+            </mat-nav-list>
+
+        </div>
+    </mat-sidenav>
+
+
+
+    <mat-sidenav-content>
+
+        <mat-toolbar>
+            <mat-toolbar-row>
+                <button class="toggle-menu" (click)="showMenu = !showMenu">
+                    <i class="fa fa-solid fa-bars"></i>
+                </button>
+
+            </mat-toolbar-row>
+
+        </mat-toolbar>
+
+        <div class="app-body">
+            <main class="main">
+                <div class="container-fluid">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

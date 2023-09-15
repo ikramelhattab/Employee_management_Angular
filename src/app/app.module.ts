@@ -10,6 +10,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AddEmployeeDialogComponent } from './add-employee-dialog/add-employee-dialog.component'; 
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { LayoutComponent } from './layout/layout.component';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   
@@ -17,6 +21,7 @@ import { MatButtonModule } from '@angular/material/button';
     AppComponent,
     EmployeeListComponent,
     AddEmployeeDialogComponent,
+    LayoutComponent,
     
   ],
   imports: [
@@ -27,7 +32,10 @@ import { MatButtonModule } from '@angular/material/button';
     HttpClientModule,
     BrowserAnimationsModule, 
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

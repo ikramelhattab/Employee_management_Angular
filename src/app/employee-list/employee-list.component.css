@@ -1,28 +1,26 @@
-.center-tab {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
-  padding: 0;
-  margin: 0;
-  overflow-y: auto;
+
+.container-fluid {
+  padding-bottom: 20px;
 }
+
 .container {
   padding-bottom: 20px;
 }
+
 .emp-table-container {
   margin-top: 10px;
 }
+
 label {
   font-weight: bold;
   font-size: 18;
 }
 
-  h1 {
-    color: #333;
-    text-align: center;
-  }
-  
+h1 {
+  color: #333;
+  text-align: center;
+}
+
 .input-label {
   position: absolute;
   top: -10px;
@@ -41,104 +39,150 @@ input {
   border-radius: 10px;
   font-size: 18px;
 }
-  table {
-    border-collapse: collapse;
-    margin-top: 20px;
-    min-width: 566px;
 
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  th {
-    background-color: #f0f0f0;
+table {
+  border-collapse: collapse;
+  margin-top: 20px;
+  min-width: 566px;
+
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f7f7f7;
+}
+
+tr:hover {
+  background-color: #e0e0e0;
+}
+
+.delete-button {
+  border: none;
+  padding: 10px 20px;
+  text-transform: capitalize;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #ff2600;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+
+.add-button {
+  border: none;
+  padding: 10px 20px;
+  background: linear-gradient(270deg, #2a6dbe 27.81%, #217ff3 43.71%, #3582ee 95.63%);
+  text-transform: capitalize;
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+
+  &:hover {
     cursor: pointer;
-    font-weight: bold;
+    opacity: 0.95;
   }
-  
-  tr:nth-child(even) {
-    background-color: #f7f7f7;
+
+  &:disabled {
+    cursor: not-allowed;
   }
-  
-  tr:hover {
-    background-color: #e0e0e0;
+}
+
+
+.add-form {
+  margin-top: 20px;
+}
+
+.add-form h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+
+}
+
+.add-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.add-form button[type="submit"] {
+  background-color: #28a745;
+}
+
+.add-form button[type="submit"]:hover {
+  background-color: #1d7524;
+}
+
+
+@media(max-width: 1199px) {
+  .card {
+    margin-bottom: 10px;
   }
-  
-  .delete-button {
-    padding: 5px 10px;
-    background-color: #ff2600;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
-  /* .add-button:hover {
-    background-color: #0662c4;
-  } */
-  
-  .add-button {
-    text-align: right;
-    margin-top: 20px;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .add-form {
-    margin-top: 20px;
-  }
-  
-  .add-form h2 {
-    font-size: 20px;
+
+  .h1 {
     margin-bottom: 10px;
 
   }
-  
-  .add-form input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .add-form button[type="submit"] {
-    background-color: #28a745;
-  }
-  
-  .add-form button[type="submit"]:hover {
-    background-color: #1d7524;
-  }
-  
+}
 
-  @media(max-width: 1199px) {
-    .card {
-      margin-bottom: 10px;
-    }
-    .h1{
-      margin-bottom: 10px;
+.parent {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
 
-    }
-  }
-  
-  .parent {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .flex-item{
-  
-     flex: 0 0 198px; 
-     margin: 10px;
-  }
+.flex-item {
 
-  .box {
-    display: flex;
+  flex: 0 0 198px;
+  margin: 10px;
+}
+
+.box {
+  display: flex;
+}
+
+.push {
+  margin-left: auto;
+}
+
+select {
+  padding: 12px 18px;
+  border-color: rgba(23, 38, 79, 1);
+  border-radius: 10px;
+  font-size: 18px;
+  width: 100%;
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
   }
-  .push {
-      margin-left: auto;
-  }
+}
+
+
+.input-label {
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  background-color: white;
+  padding: 0px 20px 0px 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 18;
+}

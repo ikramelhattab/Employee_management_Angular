@@ -177,11 +177,8 @@ export class EmployeeListComponent implements OnInit {
   // Open the add form as a dialog
   openAddForm(): void {
     const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-      panelClass: 'center-dialog',
-      width: '500px',
-      height: '500px',
-      autoFocus: false,
-      disableClose: true,
+    
+    
 
     });
 
