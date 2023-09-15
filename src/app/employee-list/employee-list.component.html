@@ -3,7 +3,7 @@
 <h1>Liste des Employés</h1>
 
 <!-- Bouton d'ajout -->
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-end">
   <button class="add-button" (click)="openAddForm()">
     <i class="fa fa-solid fa-plus"></i> Ajouter un employé</button>
 </div>
@@ -67,4 +67,9 @@
   </tbody>
 </table>
 
+<div class="pagination-controls">
+  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+</div>
 </div>

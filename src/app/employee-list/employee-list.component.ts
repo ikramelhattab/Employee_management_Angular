@@ -44,6 +44,24 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  // Calculate the total number of pages
+get totalPages(): number {
+  return Math.ceil(this.employees.length / this.itemsPerPage);
+}
+
+previousPage(): void {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+  }
+}
+
+nextPage(): void {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+  }
+}
+
+
   onPageChange(newPage: number): void {
     this.currentPage = newPage;
   }

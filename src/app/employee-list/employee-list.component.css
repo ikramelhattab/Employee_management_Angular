@@ -186,3 +186,56 @@ select {
   font-weight: 700;
   font-size: 18;
 }
+
+.d-flex {
+  display: flex;
+}
+
+.justify-content-end {
+  justify-content: flex-end;
+}
+
+/* Inside employee-list.component.css */
+@media screen and (max-width: 768px) {
+  /* Define styles for smaller screens here */
+  /* For example, hide table columns or elements */
+  table th:nth-child(5), /* Example: Hide the 5th column */
+  table td:nth-child(5) {
+    display: none;
+  }
+}
+
+
+
+/* Pagination controls container */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Pagination buttons */
+.pagination-controls button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  margin: 0 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* Disabled state for buttons */
+.pagination-controls button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Page number indicator */
+.pagination-controls span {
+  font-size: 18px;
+  margin: 0 10px;
+  font-weight: bold;
+}
