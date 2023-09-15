@@ -1,75 +1,77 @@
 <div class="container-fluid">
 
-<h1>Liste des Employés</h1>
+  <h1>Liste des Employés</h1>
 
-<!-- Bouton d'ajout -->
-<div class="d-flex justify-content-end">
-  <button class="add-button" (click)="openAddForm()">
-    <i class="fa fa-solid fa-plus"></i> Ajouter un employé</button>
-</div>
-
-
-<div class="box">
-  <!-- Boutons de pagination -->
-  <div class="flex-item">
-    <label for="itemsPerPage">Éléments par page :</label>
-    <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="30">30</option>
-    </select>
+  <!-- Bouton d'ajout -->
+  <div class="d-flex justify-content-end">
+    <button class="add-button" (click)="openAddForm()">
+      <i class="fa fa-solid fa-plus"></i> Ajouter un employé</button>
   </div>
 
-  <!-- Champs de filtrage -->
-  <div class="push">
-    <input type="text" [(ngModel)]="searchFilter" (keyup)="filterData()"
-      placeholder="Filtrer par nom, email, téléphone...">
+
+  <div class="box">
+    <!-- Champs de filtrage -->
+    <div class="d-flex justify-content-end">
+      <div class="flex-item push">
+        <div class="flex-item ">
+          <input type="text" [(ngModel)]="searchFilter" (keyup)="filterData()"
+            placeholder="Filtrer par nom, email, téléphone...">
+        </div>
+      </div>
+    </div>
+
+    <!-- Éléments par page dropdown -->
+    <div class="d-flex justify-content-start">
+      <label for="itemsPerPage">Éléments par page :</label>
+      <select id="itemsPerPage" [(ngModel)]="itemsPerPage" (change)="onItemsPerPageChange()">
+        <option value="10">10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+      </select>
+    </div>
   </div>
-</div>
 
 
 
-<!-- Tableau des employés -->
-<table class="emp-table-container  ">
-  <!-- En-tête du tableau avec des boutons de tri -->
-  <thead>
-    <tr>
-      <th (click)="sortBy('imageUrl')"> Image</th>
-      <th (click)="sortBy('firstName')"><i class="fa fa-fw fa-sort"></i> Nom</th>
-      <th (click)="sortBy('lastName')"> <i class="fa fa-fw fa-sort"></i> Prénom</th>
-      <th (click)="sortBy('email')"> <i class="fa fa-fw fa-sort"></i>Email</th>
-      <th (click)="sortBy('contactNumber')"> <i class="fa fa-fw fa-sort"></i>Téléphone</th>
-      <th (click)="sortBy('age')"> <i class="fa fa-fw fa-sort"></i>Age</th>
-      <th (click)="sortBy('dob')"> <i class="fa fa-fw fa-sort"></i>Date de naissance </th>
-      <th (click)="sortBy('salary')"> <i class="fa fa-fw fa-sort"></i>Salaire</th>
-      <th (click)="sortBy('address')"> <i class="fa fa-fw fa-sort"></i>Addresse</th>
-      <th>Action</th>
+  <!-- Tableau des employés -->
+  <table class="emp-table-container  ">
+    <thead>
+      <tr>
+        <th (click)="sortBy('imageUrl')"> Image</th>
+        <th (click)="sortBy('firstName')"><i class="fa fa-fw fa-sort"></i> Nom</th>
+        <th (click)="sortBy('lastName')"> <i class="fa fa-fw fa-sort"></i> Prénom</th>
+        <th (click)="sortBy('email')"> <i class="fa fa-fw fa-sort"></i>Email</th>
+        <th (click)="sortBy('contactNumber')"> <i class="fa fa-fw fa-sort"></i>Téléphone</th>
+        <th (click)="sortBy('age')"> <i class="fa fa-fw fa-sort"></i>Age</th>
+        <th (click)="sortBy('dob')"> <i class="fa fa-fw fa-sort"></i>Date de naissance </th>
+        <th (click)="sortBy('salary')"> <i class="fa fa-fw fa-sort"></i>Salaire</th>
+        <th (click)="sortBy('address')"> <i class="fa fa-fw fa-sort"></i>Addresse</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Utilisez *ngFor pour afficher les employés  -->
+      <tr *ngFor="let employee of employees  | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } ">
+        <td> <img src="{{ employee.imageUrl }}" width="50" height="50"> </td>
+        <td>{{ employee.firstName }}</td>
+        <td>{{ employee.lastName }}</td>
+        <td>{{ employee.email }}</td>
+        <td>{{ employee.contactNumber }}</td>
+        <td>{{ employee.age }}</td>
+        <td>{{ employee.dob }}</td>
+        <td>{{ employee.salary }}</td>
+        <td>{{ employee.address }}</td>
+        <td>
+          <button class="delete-button" (click)="deleteEmployee(employee)"> <i class="fa fa-solid fa-trash-o"></i>
+            Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Utilisez *ngFor pour afficher les employés  -->
-    <tr *ngFor="let employee of employees  | paginate: { itemsPerPage: itemsPerPage, currentPage: currentPage } ">
-      <td> <img src="{{ employee.imageUrl }}" width="50" height="50"> </td>
-      <td>{{ employee.firstName }}</td>
-      <td>{{ employee.lastName }}</td>
-      <td>{{ employee.email }}</td>
-      <td>{{ employee.contactNumber }}</td>
-      <td>{{ employee.age }}</td>
-      <td>{{ employee.dob }}</td>
-      <td>{{ employee.salary }}</td>
-      <td>{{ employee.address }}</td>
-      <td>
-        <button class="delete-button" (click)="deleteEmployee(employee)"> <i class="fa fa-solid fa-trash-o"></i>
-          Supprimer</button>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="pagination-controls">
-  <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
-  <span>Page {{ currentPage }} of {{ totalPages }}</span>
-  <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
-</div>
+  <div class="pagination-controls">
+    <button (click)="previousPage()" [disabled]="currentPage === 1">Previous</button>
+    <span> Page {{ currentPage }} of {{ totalPages }}</span>
+    <button (click)="nextPage()" [disabled]="currentPage === totalPages">Next</button>
+  </div>
 </div>
