@@ -51,8 +51,7 @@ export class AddEmployeeDialogComponent implements OnInit {
       // Form is valid, handle submission
       const dateOfBirth = this.datePipe.transform(this.employeeForm.get('dob')?.value, 'dd/MM/yyyy');
       const phone = this.employeeForm.get('contactNumber')?.value;
-      // Insert the new employee at the beginning of the employees array
-      // this.employee.unshift({ firstName: this.firstName, lastName: this.lastName, email: this.email, address: this.address, contactNumber: this.contactNumber, dob: date_birth, age: this.age, salary: this.salary, imageUrl: this.imageUrl });
+
       this.dialogRef.close({ firstName: this.firstName, lastName: this.lastName, email: this.email, address: this.address, contactNumber: phone, dob: dateOfBirth, age: this.age, salary: this.salary, imageUrl: this.imageUrl });
     } else {
       // Form is not valid, handle errors
