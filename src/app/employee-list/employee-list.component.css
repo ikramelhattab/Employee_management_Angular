@@ -3,10 +3,6 @@
   padding-bottom: 20px;
 }
 
-.container {
-  padding-bottom: 20px;
-}
-
 .emp-table-container {
   margin-top: 10px;
 }
@@ -21,18 +17,6 @@ h1 {
   text-align: center;
 }
 
-.input-label {
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  background-color: white;
-  padding: 0px 20px 0px 10px;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 18;
-}
-
-
 input {
   padding: 6px 18px;
   border: 1px solid rgb(87, 97, 124);
@@ -43,7 +27,7 @@ input {
 table {
   border-collapse: collapse;
   margin-top: 20px;
-  min-width: 566px;
+  min-width: 600px;
 
 }
 
@@ -104,33 +88,6 @@ tr:hover {
 }
 
 
-.add-form {
-  margin-top: 20px;
-}
-
-.add-form h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-
-}
-
-.add-form input[type="text"] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-}
-
-.add-form button[type="submit"] {
-  background-color: #28a745;
-}
-
-.add-form button[type="submit"]:hover {
-  background-color: #1d7524;
-}
-
-
 @media(max-width: 1199px) {
   .card {
     margin-bottom: 10px;
@@ -141,18 +98,6 @@ tr:hover {
 
   }
 }
-
-.parent {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* .flex-item {
-
-  flex: 0 0 198px;
-  margin: 10px;
-} */
 
 
 .box {
@@ -176,7 +121,7 @@ tr:hover {
 
   .flex-item {
     width: 100%; /* Make elements take up full width on smaller screens */
-    margin-bottom: 10px; /* Add spacing between elements */
+    margin-bottom: 10px; 
   }
 }
 
@@ -214,11 +159,9 @@ select {
   justify-content: flex-end;
 }
 
-/* Inside employee-list.component.css */
 @media screen and (max-width: 768px) {
   /* Define styles for smaller screens here */
-  /* For example, hide table columns or elements */
-  table th:nth-child(5), /* Example: Hide the 5th column */
+  table th:nth-child(5),
   table td:nth-child(5) {
     display: none;
   }

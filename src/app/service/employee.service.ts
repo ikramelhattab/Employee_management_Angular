@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class EmployeeService {
   private apiUrl = 'https://hub.dummyapis.com/employee';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<any> {
     return this.http.get(`${this.apiUrl}?noofRecords=100&idStarts=1`);

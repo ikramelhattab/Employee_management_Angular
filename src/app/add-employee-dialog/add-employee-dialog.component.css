@@ -1,19 +1,16 @@
-/* Add this to your CSS file */
 .popup-container {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 1000; /* Adjust z-index as needed */
+  z-index: 1000;
+  /* Adjust z-index as needed */
   background-color: white;
   padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Optional shadow effect */
-  max-width: 80%; /* Optional maximum width */
-
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  max-width: 80%;
 }
-
-
 
 .cancel-btn {
   font-weight: 600;
@@ -57,40 +54,26 @@
 
 form {
   margin-top: 10px;
-  
-    .form-group-control {
-        margin-top: 10px;
-        margin-bottom: 26px;
-        position: relative;
-    }
- 
-    input {
-      padding: 12px 18px;
-      border-color: rgba(23, 38, 79, 1);
-      border-radius: 10px;
-      font-size: 18px;
+
+  .form-group-control {
+    margin-top: 10px;
+    margin-bottom: 26px;
+    position: relative;
   }
 
-  select {
-      padding: 12px 18px;
-      border-color: rgba(23, 38, 79, 1);
-      border-radius: 10px;
-      font-size: 18px;
-      width: 100%;
-      &:focus {
-          outline: 0;
-          box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
-      }
+  input {
+    padding: 12px 18px;
+    border-color: rgba(23, 38, 79, 1);
+    border-radius: 10px;
+    font-size: 18px;
   }
-
-
-  
 
   /* Supress the background color of the input */
   input:-webkit-autofill,
   input:-webkit-autofill:focus {
-      transition: background-color 600000s 0s, color 600000s 0s;
+    transition: background-color 600000s 0s, color 600000s 0s;
   }
+
   .input-label {
     position: absolute;
     top: -10px;
@@ -100,31 +83,18 @@ form {
     text-transform: uppercase;
     font-weight: 700;
     font-size: 18;
-}
-
-label.error {
-    color: #d8392b;
-}
-
-input.error {
-    border-color: #d8392b;
-}
-
-select.error {
-    border-color: #d8392b;
-}
+  }
 
 }
-
 
 /* Add error styles for invalid, touched form controls */
 .form-group-control.ng-invalid.ng-touched input {
-  border: 1px solid #ff0000; /* Red border for invalid fields */
+  border: 1px solid #ff0000;
 }
 
 /* Add error styles for the error message */
 .form-group-control .error-message {
-  color: #ff0000; /* Red text color for error messages */
+  color: #ff0000;
   font-size: 12px;
 }
 

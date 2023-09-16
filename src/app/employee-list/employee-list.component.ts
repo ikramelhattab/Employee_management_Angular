@@ -36,6 +36,7 @@ export class EmployeeListComponent implements OnInit {
   ngOnInit(): void {
     this.loadEmployees();
     this.filterData();
+
   }
 
   loadEmployees(): void {
@@ -44,30 +45,39 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  // Calculate the total number of pages
-get totalPages(): number {
-  return Math.ceil(this.employees.length / this.itemsPerPage);
-}
-
-previousPage(): void {
-  if (this.currentPage > 1) {
-    this.currentPage--;
-  }
-}
-
-nextPage(): void {
-  if (this.currentPage < this.totalPages) {
-    this.currentPage++;
-  }
-}
 
 
-  onPageChange(newPage: number): void {
-    this.currentPage = newPage;
+
+
+
+  /** Update the pagiantion  when the user change the number of elements per page */
+  onItemsPerPageChange(): void {
+    this.currentPage = 1;
+    this.filterData();
   }
 
+
+  /** Calculate the total number of pages */
+  get totalPages(): number {
+    return Math.ceil(this.employees.length / this.itemsPerPage);
+  }
+
+  /** Previous page */
+  previousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  /** Next page */
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  /** Sort elements asc and desc */
   sortBy(key: string): void {
-
     if (key === this.sortKey) {
       // If the same column header is clicked, toggle the sorting direction
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
@@ -75,7 +85,6 @@ nextPage(): void {
       // If a different column header is clicked, reset the sorting direction to 'asc'
       this.sortDirection = 'asc';
     }
-
     this.sortKey = key;
 
     switch (key) {
@@ -84,7 +93,7 @@ nextPage(): void {
       case 'email':
       case 'address':
       case 'contactNumber':
-        // For string fields, use localeCompare for case-insensitive sorting
+        // For string fields, use localeCompare
         this.employees.sort((a, b) => {
           const result = a[key].localeCompare(b[key]);
           return this.sortDirection === 'asc' ? result : -result;
@@ -115,13 +124,8 @@ nextPage(): void {
     }
   }
 
-  onItemsPerPageChange(): void {
-    // Mettez à jour la pagination lorsque l'utilisateur change le nombre d'éléments par page
-    this.currentPage = 1;
-    this.filterData();
-  }
 
-  // Custom function to parse date from "MM/DD/YYYY" string format
+  /** Custom function to parse date from "MM/DD/YYYY" string format */
   private parseDateFromString(dateString: string): Date | null {
     const dateParts = dateString.split('/');
     if (dateParts.length === 3) {
@@ -137,14 +141,12 @@ nextPage(): void {
   }
 
 
-
+  /** Assuming you want to filter by any field containing the searchFilter value */
   filterData(): void {
-    // Assuming you want to filter by any field containing the searchFilter value
     this.employees = this.employees.filter((employee) => {
       const searchString = this.searchFilter.toLowerCase();
       const searchNumber = parseInt(this.searchFilter);
       const searchFloat = parseFloat(this.searchFilter);
-
       return (
         employee.firstName.toLowerCase().includes(searchString) ||
         employee.lastName.toLowerCase().includes(searchString) ||
@@ -160,81 +162,26 @@ nextPage(): void {
 
 
 
-
+  /** delete empolyee in the table */
   deleteEmployee(employee: any): void {
-
     const index = this.employees.indexOf(employee);
     if (index !== -1) {
       this.employees.splice(index, 1);
     }
 
   }
-  addEmployee(): void {
-    // Ajoutez le nouvel employé à la liste
-    this.employees.push(this.newEmployee);
 
-    // Réinitialisez les champs du formulaire après l'ajout
-    this.newEmployee = {
-      firstName: '',
-      lastName: '',
-      email: '',
-      address: '',
-      contactNumber: '',
-      dob: '',
-      age: '',
-      salary: '',
-    };
-
-    
-
-  }
-
-
-
-
-  // Open the add form as a dialog
+  /** Open the add form as a dialog */
   openAddForm(): void {
     const dialogRef = this.dialog.open(AddEmployeeDialogComponent, {
-    
-    
-
     });
-
     dialogRef.afterClosed().subscribe((result: any) => {
-      // Traitez les données retournées par la popup ici si nécessaire
       if (result) {
-        // Ajoutez le nouvel employé à la liste
+        // add new emp to list 
         this.employees.push(result);
       }
     });
-
   }
-
-
-  get filteredEmployees(): any[] {
-    // Calculate the starting index of the current page
-    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-
-    // Slice the employees array to get the employees for the current page
-    const pagedEmployees = this.employees.slice(startIndex, startIndex + this.itemsPerPage);
-
-    // Filter the paged employees based on the search filter
-    return pagedEmployees.filter((employee) => {
-      const searchString = this.searchFilter.toLowerCase();
-      // Add your filtering logic here, similar to what you did in the filterData method
-      return (
-        employee.firstName.toLowerCase().includes(searchString) ||
-        employee.lastName.toLowerCase().includes(searchString) ||
-        employee.email.toLowerCase().includes(searchString) ||
-        employee.address.toLowerCase().includes(searchString) ||
-        employee.contactNumber.toLowerCase().includes(searchString) ||
-        employee.dob.toLowerCase().includes(searchString) ||
-        (employee.age === parseInt(searchString)) ||
-        (employee.salary === parseFloat(searchString))
-      );
-    });
-  }
-
 
 
 }

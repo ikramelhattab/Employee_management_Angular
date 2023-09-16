@@ -1,6 +1,17 @@
+.app-body {
+    position: relative;
+    min-height: 100vh;
+    background-color: white;
+    .main {
+        .container-fluid {
+            padding-top: 74px;
+        }
+    }
+}
+
 mat-toolbar {
     color: rgb(243, 244, 248);
-    background-color:white;
+    background-color: white;
     font-size: 24px;
     font-weight: 700;
     line-height: 1.25rem;
@@ -21,7 +32,7 @@ mat-toolbar {
 }
 
 mat-sidenav {
-    background-color:  #2a6dbe;
+    background-color: #2a6dbe;
     border: none;
     z-index: 11 !important;
     height: 100%;
@@ -31,39 +42,16 @@ mat-sidenav {
     position: fixed;
     top: 0;
     left: 0;
-
-     /* Center the content */
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
+    /* Center the content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 
     .sidenav-content {
         padding: 16px 6px;
     }
-   
-    
-    .user-info {
-       
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        margin-top: 26px;
-        margin-bottom: 30px;
-        .avatar {
-            width: 80px;
-            height: 80px;
-            margin-bottom: 10px;
-        }
-        .name {
-            color: white;
-            font-weight: 900;
-            font-size: 16px;
-            text-align: center;
-        }
-    }
-    
+
 
     .mat-list-item {
         color: white;
@@ -91,9 +79,11 @@ mat-sidenav {
         left: 50%;
         -webkit-transform: translateX(-50%);
         transform: translateX(-50%);
+
         .mat-list-item {
             text-decoration: none;
             white-space: nowrap;
+
             &:hover {
                 cursor: pointer;
             }
@@ -101,13 +91,11 @@ mat-sidenav {
     }
 }
 
-.app-body {
-    position: relative;
-    min-height: 100vh;
-    background-color: white;
-    .main {
-        .container-fluid {
-            padding-top: 74px;
-        }
-    }
+.avatar-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: beige;
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, isDevMode, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
@@ -13,22 +13,12 @@ export class LayoutComponent implements OnInit, AfterViewInit {
 
   modeMenu: MatDrawerMode = 'side';
   showMenu = true;
-  userFirstName = '';
-  userLastName = '';
-  userEmail = '';
-  isUserAdmin = false;
-  pageTitle = '';
 
   private screenWidth = new BehaviorSubject<number>(window.outerWidth);
 
-  constructor(
-    private router: Router) {
-     }
+  constructor() {}
 
-
-  ngOnInit(): void {
-   
-  }
+  ngOnInit(): void {}
 
 
   ngAfterViewInit(): void {
@@ -42,9 +32,5 @@ export class LayoutComponent implements OnInit, AfterViewInit {
       }
     });
   }
-
-
- 
-
 
 }
